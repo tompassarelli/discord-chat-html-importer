@@ -77,7 +77,17 @@ const typecheckFunctionDictionary = {
 const contentParser = {
 
 	parseText: function(_node) {
-		return _node.querySelector('.preserve-whitespace').innerHTML
+		let node = _node.querySelector('.preserve-whitespace')
+		if (node.querySelector('.emoji')) {
+			let emoji =	':' + node.querySelector('.emoji').getAttribute('alt') + ':'
+			return emoji
+		}
+		if (node.firstElementChild) {
+			if (node.firstElementChild.nodeName = 'A') {
+				return node.firstElementChild.href
+			}
+		}
+		return node.innerHTML
 	},
 
 	parseEmbed: function(_node) {
@@ -182,7 +192,6 @@ function getContentNodeData(node) {
 	return res;
 }
 
-
 mList.forEach(mc => {
 	// on next **message container: mc** create temp buffer new entry in mObj
 	const dm = new DiscordMessage()
@@ -195,7 +204,7 @@ mList.forEach(mc => {
 	// start traversing chatlog message tree, again static
 	// author node first
 	author.color = parseColor(mc.lastElementChild.firstElementChild.style.color);
-	author.name = mc.lastElementChild.firstElementChild.getAttribute('title')
+	author.name = mc.lastElementChild.firstElementChild.getAttribute('title') 
 	author.nickname = parseName(author.name)
 	author.id = mc.lastElementChild.firstElementChild.dataset.userId
 	author.discriminator = parseDecorator(author.name)
@@ -237,7 +246,6 @@ mList.forEach(mc => {
 			}
 		}
 	}
-
 	dmList.push(dm)
 })
 
