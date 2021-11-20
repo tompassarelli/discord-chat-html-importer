@@ -196,7 +196,7 @@ mList.forEach(mc => {
 	author.color = parseColor(mc.lastElementChild.firstElementChild.style.color);
 	author.name = mc.lastElementChild.firstElementChild.getAttribute('title')
 	author.nickname = parseName(author.name)
-	author.id = mc.lastElementChild.firstElementChild.dataset.userid
+	author.id = mc.lastElementChild.firstElementChild.dataset.userId
 	author.discriminator = parseDecorator(author.name)
 	author.isBot = mc.lastElementChild.firstElementChild.dataset.isBot ? true : false;
 
