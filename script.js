@@ -78,11 +78,11 @@ const contentParser = {
 		// 	let emoji =	':' + node.querySelector('.emoji').getAttribute('alt') + ':'
 		// 	return emoji
 		// }
-		// if (node.firstElementChild) {
-		// 	if (node.firstElementChild.nodeName = 'A') {
-		// 		return node.firstElementChild.href
-		// 	}
-		// }
+		if (node.firstElementChild) {
+			if (node.firstElementChild.nodeName = 'A') {
+				return node.firstElementChild.href
+			}
+		}
 		return node.innerHTML
 	},
 
@@ -189,31 +189,32 @@ function getContentNodeData(node) {
 }
 
 mList.forEach(mc => {
-	// on next **message container: mc** create temp buffer new entry in mObj
-	const dm = new DiscordMessage()
-	const author = Object.create(Author)
-
-	// avatar is always same location in tree, grab avatar src (static)
-	author.avatarUrl = mc.firstElementChild.firstElementChild.src
-
-
-	// start traversing chatlog message tree, again static
-	// author node first
-	author.color = parseColor(mc.lastElementChild.firstElementChild.style.color);
-	author.name = mc.lastElementChild.firstElementChild.getAttribute('title') 
-	author.nickname = parseName(author.name)
-	author.id = mc.lastElementChild.firstElementChild.dataset.userId
-	author.discriminator = parseDecorator(author.name)
-	author.isBot = mc.lastElementChild.firstElementChild.dataset.isBot ? true : false;
-
-	//bind to main object
-	dm.author = author;
-
-	// timestamp node second
-	dm.timestamp = mc.lastElementChild.children[1].innerHTML
 
 	// we now are presented with 1...n chatlog message nodes
 	for (let i=2; i < mc.lastElementChild.children.length; i++) {
+
+		// on next **message container: mc** create temp buffer new entry in mObj
+		const dm = new DiscordMessage()
+		const author = Object.create(Author)
+
+		// avatar is always same location in tree, grab avatar src (static)
+		author.avatarUrl = mc.firstElementChild.firstElementChild.src
+
+
+		// start traversing chatlog message tree, again static
+		// author node first
+		author.color = parseColor(mc.lastElementChild.firstElementChild.style.color);
+		author.name = mc.lastElementChild.firstElementChild.getAttribute('title') 
+		author.nickname = parseName(author.name)
+		author.id = mc.lastElementChild.firstElementChild.dataset.userId
+		author.discriminator = parseDecorator(author.name)
+		author.isBot = mc.lastElementChild.firstElementChild.dataset.isBot ? true : false;
+
+		//bind to main object
+		dm.author = author;
+
+		// timestamp node second
+		dm.timestamp = mc.lastElementChild.children[1].innerHTML
 
 		let clm = mc.lastElementChild.children[i]
 		const nodeContentDataList = getContentNodeData(clm)
@@ -241,8 +242,8 @@ mList.forEach(mc => {
 				default:
 			}
 		}
-	}
 	dmList.push(dm)
+	}
 })
 
 function parseTimestamp(timestamp) {
