@@ -14,6 +14,7 @@ let mList = document.querySelectorAll('.chatlog__message-group')
 
 const DiscordMessage = function(){
 	this.id = ''
+	this.type = 'Default'
 	this.timestamp = ''
 	this.timeStampEdited = ''
 	this.callEndedTimeStamp = ''
