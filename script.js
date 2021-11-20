@@ -78,11 +78,11 @@ const contentParser = {
 		// 	let emoji =	':' + node.querySelector('.emoji').getAttribute('alt') + ':'
 		// 	return emoji
 		// }
-		if (node.firstElementChild) {
-			if (node.firstElementChild.nodeName = 'A') {
-				return node.firstElementChild.href
-			}
-		}
+		// if (node.firstElementChild) {
+		// 	if (node.firstElementChild.nodeName = 'A') {
+		// 		return node.firstElementChild.href
+		// 	}
+		// }
 		return node.innerHTML
 	},
 
