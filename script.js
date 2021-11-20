@@ -5,10 +5,6 @@
 // About
 //   HTML to JSON convertor script for discord html extracts from discord-chat-exporter
 
-// TODO
-//   Emoji Conversions... maybe
-//   Test Against Larger Samples for more return types and null exception handling
-
 let dmList = []; //discord message list target for export
 let mList = document.querySelectorAll('.chatlog__message-group')
 
