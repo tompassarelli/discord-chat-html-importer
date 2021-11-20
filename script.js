@@ -74,15 +74,15 @@ const contentParser = {
 
 	parseText: function(_node) {
 		let node = _node.querySelector('.preserve-whitespace')
-		if (node.querySelector('.emoji')) {
-			let emoji =	':' + node.querySelector('.emoji').getAttribute('alt') + ':'
-			return emoji
-		}
-		if (node.firstElementChild) {
-			if (node.firstElementChild.nodeName = 'A') {
-				return node.firstElementChild.href
-			}
-		}
+		// if (node.querySelector('.emoji')) {
+		// 	let emoji =	':' + node.querySelector('.emoji').getAttribute('alt') + ':'
+		// 	return emoji
+		// }
+		// if (node.firstElementChild) {
+		// 	if (node.firstElementChild.nodeName = 'A') {
+		// 		return node.firstElementChild.href
+		// 	}
+		// }
 		return node.innerHTML
 	},
 
