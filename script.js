@@ -1,6 +1,4 @@
-// Author: 
-// 	Discord: @tompas7989
-// 	Github: tom.passarelli
+// 	Author Github: tompassarelli
 
 // About
 //   HTML to JSON convertor script for discord html extracts from discord-chat-exporter
